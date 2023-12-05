@@ -121,19 +121,8 @@ class HamiltonianPathBacktracking {
         HamiltonianPathBacktracking hamiltonian = new HamiltonianPathBacktracking();
         Runtime runtime = Runtime.getRuntime();
 
-        /* 
-         * Generator hamiltonian path function
-         * The output always True
-         * Small for 16 vertices
-         * Medium for 18 vertices
-         * Large for 20 vertices
-        */
-        // HamiltonianPathGenerator smallAdjMatrix = new HamiltonianPathGenerator(16);
-        // HamiltonianPathGenerator mediumAdjMatrix = new HamiltonianPathGenerator(18);
-        // HamiltonianPathGenerator largeAdjMatrix = new HamiltonianPathGenerator(20);
-
         /*
-         * Random Graph path function
+         * Generator random graph path function 
          * The output is random (not always True)
          * Small for 16 vertices
          * Medium for 18 vertices
@@ -143,61 +132,38 @@ class HamiltonianPathBacktracking {
         // int[][] randomMediumAdjMatrix = RandomGraphGenerator.generateRandomGraph(18, 0.3);
         // int[][] randomLargeAdjMatrix = RandomGraphGenerator.generateRandomGraph(20, 0.3);
 
+        /*
+         * Generator hamiltonian path function
+         * The output always True
+         * Small for 16 vertices
+         * Medium for 18 vertices
+         * Large for 20 vertices
+         */
+        // HamiltonianPathGenerator smallAdjMatrix = new HamiltonianPathGenerator(16);
+        // HamiltonianPathGenerator mediumAdjMatrix = new HamiltonianPathGenerator(18);
+        // HamiltonianPathGenerator largeAdjMatrix = new HamiltonianPathGenerator(20);
 
         System.gc();
         long beforeUsedMemory = runtime.totalMemory() - runtime.freeMemory();
         long startTime = System.currentTimeMillis();
 
-        // hamiltonian.hamPath(smallAdjMatrix.getAdjacencyMatrix());
-        // hamiltonian.hamPath(mediumAdjMatrix.getAdjacencyMatrix());
-        // hamiltonian.hamPath(largeAdjMatrix.getAdjacencyMatrix());
+        /*
+         * uncomment the one you want to use
+         */
 
         // hamiltonian.hamPath(randomSmallAdjMatrix);
         // hamiltonian.hamPath(randomMediumAdjMatrix);
         // hamiltonian.hamPath(randomLargeAdjMatrix);
+
+        // hamiltonian.hamPath(smallAdjMatrix.getAdjacencyMatrix());
+        // hamiltonian.hamPath(mediumAdjMatrix.getAdjacencyMatrix());
+        // hamiltonian.hamPath(largeAdjMatrix.getAdjacencyMatrix());
 
         long endTime = System.currentTimeMillis();
         long afterUsedMemory = runtime.totalMemory() - runtime.freeMemory();
 
         System.out.println("Memory used: " + (afterUsedMemory - beforeUsedMemory) / 1000000 + " MB");
         System.out.println("Time taken: " + (endTime - startTime) + " ms");
-
-
-        // /*
-        //  * Let us create the following graph
-        //  * (0)--(1)--(2)
-        //  * | / \ |
-        //  * | / \ |
-        //  * | / \ |
-        //  * (3)-------(4)
-        //  */
-        // int graph1[][] = { { 0, 1, 0, 1, 0 },
-        // { 1, 0, 1, 1, 1 },
-        // { 0, 1, 0, 0, 1 },
-        // { 1, 1, 0, 0, 1 },
-        // { 0, 1, 1, 1, 0 },
-        // };
-
-        // // Print the solution
-        // hamiltonian.hamPath(graph1);
-
-        // /*
-        //  * Let us create the following graph
-        //  * (0)--(1)--(2)
-        //  * | / \ |
-        //  * | / \ |
-        //  * | / \ |
-        //  * (3) (4)
-        //  */
-        // int graph2[][] = { { 0, 1, 0, 1, 0 },
-        //         { 1, 0, 1, 1, 1 },
-        //         { 0, 1, 0, 0, 1 },
-        //         { 1, 1, 0, 0, 0 },
-        //         { 0, 1, 1, 0, 0 },
-        // };
-
-        // // // Print the solution
-        // hamiltonian.hamPath(graph2);
     }
 }
 // This code is contributed by Abhishek Shankhadhar

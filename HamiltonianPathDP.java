@@ -55,29 +55,44 @@ class HamiltonianPathDP {
     public static void main(String[] args) {
         Runtime runtime = Runtime.getRuntime();
         /*
-         * generator hamiltonian path function
+         * Generator random graph path function
          * small for 16 vertices
          * medium for 18 vertices
          * large for 20 vertices
          * uncomment the one you want to use
          */
+        int[][] randomSmallAdjMatrix = RandomGraphGenerator.generateRandomGraph(16, 0.3);
+        // int[][] randomMediumAdjMatrix = RandomGraphGenerator.generateRandomGraph(18, 0.3);
+        // int[][] randomLargeAdjMatrix = RandomGraphGenerator.generateRandomGraph(20, 0.3);
+
+        /*
+         * Generator hamiltonian path function
+         * The output always True
+         * Small for 16 vertices
+         * Medium for 18 vertices
+         * Large for 20 vertices
+         */
         // HamiltonianPathGenerator smallAdjMatrix = new HamiltonianPathGenerator(16);
         // HamiltonianPathGenerator mediumAdjMatrix = new HamiltonianPathGenerator(18);
         // HamiltonianPathGenerator largeAdjMatrix = new HamiltonianPathGenerator(20);
 
-        // int[][] smallAdjMatrix = RandomGraphGenerator.generateRandomGraph(16, 0.3);
-        // int[][] mediumAdjMatrix = RandomGraphGenerator.generateRandomGraph(18, 0.3);
-        int[][] largeAdjMatrix = RandomGraphGenerator.generateRandomGraph(20, 0.3);
-
         // Function Call
-
         System.gc();
         long beforeUsedMemory = runtime.totalMemory() - runtime.freeMemory();
         long startTime = System.currentTimeMillis();
-        if (Hamiltonian_path(largeAdjMatrix, 20))
-            System.out.println("YES");
-        else
-            System.out.println("NO");
+
+        /*
+         * uncomment the one you want to use
+         */
+
+        boolean isHamiltonianPath = Hamiltonian_path(randomSmallAdjMatrix, 16);
+        // boolean isHamiltonianPath = Hamiltonian_path(randomMediumAdjMatrix, 18);
+        // boolean isHamiltonianPath = Hamiltonian_path(randomLargeAdjMatrix, 20);
+
+        // boolean isHamiltonianPath = Hamiltonian_path(smallAdjMatrix.getAdjacencyMatrix(), 16);
+        // boolean isHamiltonianPath = Hamiltonian_path(mediumAdjMatrix.getAdjacencyMatrix(), 18);
+        // boolean isHamiltonianPath = Hamiltonian_path(largeAdjMatrix.getAdjacencyMatrix(), 20);
+
         long endTime = System.currentTimeMillis();
         long afterUsedMemory = runtime.totalMemory() - runtime.freeMemory();
 
@@ -85,16 +100,12 @@ class HamiltonianPathDP {
         System.out.println("Time taken: " + (endTime - startTime) + " ms");
 
 
-
-        int graph2[][] = { { 0, 1, 0, 1, 0 },
-                { 1, 0, 1, 1, 1 },
-                { 0, 1, 0, 0, 1 },
-                { 1, 1, 0, 0, 0 },
-                { 0, 1, 1, 0, 0 },
-        };
-
-        // // Print the solution
-        System.out.println(Hamiltonian_path(graph2, 5));
+        // Print the result
+        if (isHamiltonianPath) {
+            System.out.println("Hamiltonian Path exists");
+        } else {
+            System.out.println("Hamiltonian Path does not exist");
+        }
     }
 }
 
